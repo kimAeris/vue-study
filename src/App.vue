@@ -1,7 +1,7 @@
 <template>
   <TodoHeader />
   <TodoInput @add="addTodoItem" />
-  <TodoList :todoItems="todoItems" />
+  <TodoList :todoItems="todoItems" @remove="removeTodoItem" />
 </template>
 
 <script>
@@ -37,6 +37,13 @@ export default {
     }
 
     return { todoItems, addTodoItem };
+  },
+  methods: {
+    removeTodoItem(item, index) {
+      this.todoItems.splice(index, 1); // setup 안에 있는 데이터에 접근 가능
+      localStorage.removeItem(item);
+    },
+    // setup 은 원하는 구간에서 사용 가능하다 !
   },
 };
 </script>
