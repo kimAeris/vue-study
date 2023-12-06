@@ -35,22 +35,23 @@ export default {
       return result;
     }
 
-    console.log("1 : setup called");
+    // console.log("1 : setup called");
 
     // 라이프 사이클 API가 적용되는 구간
     onBeforeMount(() => {
-      console.log("2: onBeforeMount called");
+      // console.log("2: onBeforeMount called");
       todoItems.value = fetchTodos();
     });
 
     onMounted(() => {
-      console.log("3");
+      // console.log("3");
     });
 
     onUnmounted(() => {
-      console.log(
-        "4 : 컴포넌트가 사라졌을 때 호출 (페이지 떠남 or v-if를 통한 컴포넌트 제거)"
-      );
+      console
+        .log
+        // "4 : 컴포넌트가 사라졌을 때 호출 (페이지 떠남 or v-if를 통한 컴포넌트 제거)"
+        ();
     });
 
     function addTodoItem(todo) {
