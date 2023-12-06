@@ -1,11 +1,11 @@
 <template>
-  <TodoHeader />
+  <TodoHeader :appTitle="title" />
   <TodoInput @add="addTodoItem" />
   <TodoList :todoItems="todoItems" @remove="removeTodoItem" />
 </template>
 
 <script>
-import { ref } from "vue";
+import { onBeforeMount, onMounted, onUnmounted, ref } from "vue";
 import TodoHeader from "./components/TodoHeader.vue";
 import TodoInput from "./components/TodoInput.vue";
 import TodoList from "./components/TodoList.vue";
@@ -15,6 +15,11 @@ export default {
     TodoHeader,
     TodoInput,
     TodoList,
+  },
+  data() {
+    return {
+      title: "Todo App",
+    };
   },
   setup() {
     // data
@@ -29,7 +34,24 @@ export default {
       }
       return result;
     }
-    todoItems.value = fetchTodos();
+
+    console.log("1 : setup called");
+
+    // 라이프 사이클 API가 적용되는 구간
+    onBeforeMount(() => {
+      console.log("2: onBeforeMount called");
+      todoItems.value = fetchTodos();
+    });
+
+    onMounted(() => {
+      console.log("3");
+    });
+
+    onUnmounted(() => {
+      console.log(
+        "4 : 컴포넌트가 사라졌을 때 호출 (페이지 떠남 or v-if를 통한 컴포넌트 제거)"
+      );
+    });
 
     function addTodoItem(todo) {
       todoItems.value.push(todo);

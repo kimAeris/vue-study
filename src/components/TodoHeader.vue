@@ -1,7 +1,19 @@
 <template>
-  <h1>TODO APP</h1>
+  <h1>{{ appTitle }}</h1>
+  <h4>{{ newTitle }}</h4>
 </template>
 
 <script>
-export default {};
+import { computed } from "vue";
+
+export default {
+  props: ["appTitle"],
+  setup(props) {
+    const newTitle = computed(() => {
+      return props.appTitle + "!!";
+    });
+
+    return { newTitle };
+  },
+};
 </script>
