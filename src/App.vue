@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { onBeforeMount, onUnmounted } from "vue";
 import TodoHeader from "./components/TodoHeader.vue";
 import TodoInput from "./components/TodoInput.vue";
 import TodoList from "./components/TodoList.vue";
@@ -24,11 +25,11 @@ export default {
   setup() {
     const { todoItems, addTodoItem, fetchTodos } = useTodo();
 
-    // console.log("1 : setup")
+    console.log("1 : setup");
 
     // 라이프 사이클 API가 적용되는 구간
     onBeforeMount(() => {
-      // console.log("2: onBeforeMount called");
+      console.log("2: onBeforeMount called");
       todoItems.value = fetchTodos();
     });
 
